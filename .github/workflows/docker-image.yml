@@ -15,6 +15,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-          echo "{{ secrets.REGISTRY_PASSWORD }}" | docker login registry.jazper.dk --username {{ secrets.REGISTRY_USERNAME }} --password-stdin
+          echo ${{ secrets.REGISTRY_PASSWORD }} | docker login registry.jazper.dk --username ${{ secrets.REGISTRY_USERNAME }} --password-stdin
           docker build --tag registry.jazper.dk/jazperdk:latest .
           docker push registry.jazper.dk/jazperdk:latest
