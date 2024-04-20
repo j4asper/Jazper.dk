@@ -14,7 +14,6 @@ namespace JazperDK.Controllers
                     ViewData["Message"] = "Not Found";
                     break;
             }
-            
             return View();
         }
     }
