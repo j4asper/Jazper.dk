@@ -31,7 +31,10 @@ namespace JazperDK.Controllers
             // Add onion url header, IP and Geolocation
             if (!Request.Headers.Host.ToString().EndsWith(".onion"))
             {
-                Response.Headers.Append("Onion-Location", "http://jazper3vw7hlnso737anz2ppcgezvk2oo4cyq3ucyxq6xe3ncnbymmad.onion" + Request.Path.ToString());
+                // Don't add Onion-Location header if ONION_URL env var isn't set.
+                if (Environment.GetEnvironmentVariable("ONION_URL") != null) {
+                    Response.Headers.Append("Onion-Location", Environment.GetEnvironmentVariable("ONION_URL") + Request.Path.ToString());
+                }
 
                 ViewData["HasIP"] = true;
 
