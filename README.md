@@ -4,10 +4,6 @@
 
 My personal website with links to my socials.
 
-## Customizin
-
-`[PortfolioItem.cs](/src/Models/PortfolioItem.cs)` - Portfolio items including links and descriptions.
-
 ## Values
 
 Default values for the container:  
