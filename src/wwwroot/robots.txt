@@ -1,9 +1,0 @@
-﻿Disallow: /configs/*
-Disallow: /css/*
-Disallow: /fonts/*
-Disallow: /js/*
-Disallow: /media/*
-Disallow: /error/*
-
-# Password: batmanbatman
-Disallow /encrypted_password_manager_backup.zip
