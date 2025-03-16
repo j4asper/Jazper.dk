@@ -1,0 +1,28 @@
+@page "/Experience"
+
+<MudStack Spacing="4" AlignItems="AlignItems.Center" Class="ma-4">
+    <MudText Class="gradient-text" Align="Align.Center" Typo="Typo.h3">Experience</MudText>
+
+    <MudText Align="Align.Center">
+        Here you can explore my professional background, including the companies I've worked with, roles I've held, and my educational journey.
+    </MudText>
+</MudStack>
+
+<MudTimeline>
+    @foreach (var entry in Options.Value.ExperienceList)
+    {
+        <MudTimelineItem Color="Color.Info" Size="Size.Small">
+            <ItemOpposite>
+                <MudText Color="Color.Info" Typo="Typo.h5">@entry.From - @entry.To</MudText>
+            </ItemOpposite>
+            <ItemContent>
+                <MudText Color="Color.Info" Typo="Typo.h6" GutterBottom="true">@entry.Name</MudText>
+                <MudText>@entry.Description</MudText>
+            </ItemContent>
+        </MudTimelineItem>
+    }
+</MudTimeline>
+
+@code {
+    [Inject] public required IOptions<ExperienceOptions> Options { get; set; }
+}

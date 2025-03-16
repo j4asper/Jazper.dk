@@ -1,24 +1,27 @@
-# Restore Project
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+# https://mcr.microsoft.com/en-us/artifact/mar/dotnet/sdk/tags
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build-env
 
-COPY . /app/
+WORKDIR /Jazper.Website
 
-WORKDIR /app/src/
+COPY ["Jazper.Website/", "Jazper.Website/"]
 
-RUN dotnet restore
-
-RUN dotnet publish -c release --runtime linux-musl-x64 -o /app --no-restore --self-contained true -p:PublishTrimmed=false
+RUN dotnet publish "Jazper.Website/Jazper.Website.csproj" -p:PublishSingleFile=false -r linux-musl-x64 --self-contained -c Release -o /publish
 
 
-# https://hub.docker.com/_/microsoft-dotnet-runtime-deps/
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-alpine
+# https://hub.docker.com/_/alpine
+FROM alpine:3
 
-# Only the binary "JazperDK" and "wwwroot" is needed to run the website.
-COPY --from=build /app/JazperDK /app/JazperDK
-COPY --from=build /app/wwwroot /app/wwwroot
-
-WORKDIR /app
+RUN apk update --no-cache && apk add --no-cache icu-libs curl
 
 EXPOSE 8080
 
-ENTRYPOINT ["./JazperDK"]
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS="http://0.0.0.0:8080"
+
+WORKDIR /src
+
+COPY --from=build-env /publish /src
+
+CMD ["./Jazper.Website"]
+
+HEALTHCHECK CMD curl --fail http://0.0.0.0:8080/health || exit
