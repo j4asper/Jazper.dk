@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="/"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href=@Assets["_content/MudBlazor/MudBlazor.min.css"] rel="stylesheet"/>
+    <link href=@Assets["css/gradient-text.css"] rel="stylesheet"/>
+    <ImportMap/>
+    <link rel="icon" type="image/ico" href="favicon.ico"/>
+    <title>Jazper</title>
+    <meta name="description" content="@_description">
+    <meta name="theme-color" content="#20C20E">
+    <meta property="og:title" content="Jazper.dk" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jazper.dk" />
+    <meta property="og:image" content="/images/jazper.png" />
+    <meta property="og:description" content="@_description" />
+    <meta name="keywords" content="Jasper, Jazper, JC Integrations, Jasper Christiansen, Discord, Guildy, Bump Buddy, Software Udvikler, Software Developer">
+    <HeadOutlet @rendermode="InteractiveServer"/>
+</head>
+
+<body>
+    <Routes @rendermode="InteractiveServer"/>
+        
+    <script src=@Assets["_framework/blazor.web.js"]></script>
+    <script src=@Assets["_content/MudBlazor/MudBlazor.min.js"]></script>
+    <script src=@Assets["js/cookie.js"]></script>
+</body>
+
+</html>
+
+@code
+{
+    private readonly string _description = "Welcome to my website! My name is Jasper, and I'm a Software Developer and tech enthusiast. Feel free to explore my projects on GitHub and connect with me on LinkedIn.";
+}

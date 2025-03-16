@@ -1,0 +1,32 @@
+Disallow: /_framework/*
+Disallow: /_content/*
+Disallow: /_blazor/*
+Disallow: /videoes/*
+Disallow: /images/*
+Disallow: /icons/*
+Disallow: /css/*
+Disallow: /js/*
+
+# Don't expose password manager backup to the internet
+# Password: batmanbatman
+Disallow /encrypted_password_manager_backup.zip
+
+#                __
+#     .-.__      \ .-.  ___  __
+#     |_|  '--.-.-(   \/\;;\_\.-._______.-.
+#     (-)___     \ \ .-\ \;;\(   \       \ \
+#      Y    '---._\_((Q)) \;;\\ .-\     __(_)
+#      I           __'-' / .--.((Q))---'    \,
+#      I     ___.-:    \|  |   \'-'_          \
+#      A  .-'      \ .-.\   \   \ \ '--.__     '\
+#      |  |____.----((Q))\   \__|--\_      \     '
+#         ( )        '-'  \_  :  \-' '--.___\
+#          Y                \  \  \       \(_)
+#          I                 \  \  \         \,
+#          I                  \  \  \          \
+#          A                   \  \  \          '\
+#          |                    \  \__|           '
+#                                \_:.  \
+#                                  \ \  \
+#                                   \ \  \
+#                                    \_\_|

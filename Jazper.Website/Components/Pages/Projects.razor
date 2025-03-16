@@ -1,0 +1,22 @@
+@page "/Projects"
+
+<MudStack Spacing="4" AlignItems="AlignItems.Center" Class="ma-4">
+    <MudText Class="gradient-text" Align="Align.Center" Typo="Typo.h3">Projects</MudText>
+
+    <MudText Align="Align.Center">
+        On this page, you’ll find a selection of projects that I have personally designed and developed.
+    </MudText>
+</MudStack>
+
+<MudGrid>
+    @foreach (var project in Options.Value.ProjectList)
+    {
+        <MudItem xs="12" sm="6" md="4" lg="3" Class="d-flex justify-center">
+            <ProjectCard Project="project"/>
+        </MudItem>
+    }
+</MudGrid>
+
+@code {
+    [Inject] public required IOptions<ProjectsOptions> Options { get; set; }
+}

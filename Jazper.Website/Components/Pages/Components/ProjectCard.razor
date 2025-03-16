@@ -1,0 +1,39 @@
+@using Jazper.Website.Models
+
+<MudCard Outlined="true" Style="width: 300px; height: 300px">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText
+                Class="gradient-text"
+                Align="Align.Center"
+                Typo="Typo.h5">@Project.Name</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            @if (!string.IsNullOrEmpty(Project.RepositoryUrl))
+            {
+                <MudTooltip Text="View source">
+                    <MudIconButton
+                        Icon="@Icons.Custom.Brands.GitHub"
+                        Href="@Project.RepositoryUrl"
+                        Target="_blank"
+                        Color="Color.Success"/>
+                </MudTooltip>
+            }
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Align="Align.Center" Style="height: 140px; overflow-y: scroll;">@Project.Description</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton
+            FullWidth="true"
+            Variant="Variant.Outlined"
+            Href="@Project.Url"
+            Target="_blank"
+            Color="Color.Primary">View project</MudButton>
+    </MudCardActions>
+</MudCard>
+
+@code {
+    [Parameter] [EditorRequired] public required Project Project { get; set; }
+}
