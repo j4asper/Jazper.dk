@@ -6,44 +6,51 @@
 <MudThemeProvider Theme="@_theme" IsDarkMode="true"/>
 <MudLayout>
     <MudAppBar Elevation="1">
+        
         <MudHidden Breakpoint="Breakpoint.MdAndUp">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Primary" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())"/>
         </MudHidden>
+
         <MudButton Href="/">
             <MudImage Src="images/jazper.png" Width="30"/>
             <MudText Typo="Typo.h5" Class="ml-3 gradient-text">Jasper</MudText>
         </MudButton>
+
         <MudHidden Breakpoint="Breakpoint.SmAndDown">
             <MudSpacer/>
             <MudStack Row="true" Spacing="4">
                 @foreach (var pageEntry in _pages)
                 {
-                    <MudButton 
-                        Variant="Variant.Text" 
-                        Size="Size.Large" 
-                        Color="Color.Primary" 
-                        EndIcon="@pageEntry.Icon" 
+                    <MudButton
+                        Variant="Variant.Text"
+                        Size="Size.Large"
+                        Color="Color.Primary"
+                        EndIcon="@pageEntry.Icon"
                         Href="@pageEntry.Path">@pageEntry.Name</MudButton>
                 }
             </MudStack>
         </MudHidden>
     </MudAppBar>
 
-    <MudDrawer id="nav-drawer" Breakpoint="Breakpoint.MdAndUp" Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <MudNavMenu>
-            @foreach (var pageEntry in _pages)
-            {
-                <MudNavLink 
-                    Href="@pageEntry.Path" 
-                    Match="NavLinkMatch.All" 
-                    IconColor="Color.Primary" 
-                    Icon="@pageEntry.Icon">@pageEntry.Name</MudNavLink>
-            }
-        </MudNavMenu>
-    </MudDrawer>
+    <MudHidden Breakpoint="Breakpoint.MdAndUp">
+        <MudDrawer Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2" OpenChanged="((isOpen) => _drawerOpen = isOpen)">
+            <MudNavMenu>
+                @foreach (var pageEntry in _pages)
+                {
+                    <MudNavLink
+                        Href="@pageEntry.Path"
+                        Match="NavLinkMatch.All"
+                        IconColor="Color.Primary"
+                        Icon="@pageEntry.Icon">@pageEntry.Name</MudNavLink>
+                }
+            </MudNavMenu>
+        </MudDrawer>
+    </MudHidden>
+    
     <MudMainContent Class="mt-16 pa-4">
         @Body
     </MudMainContent>
+    
 </MudLayout>
 
 
