@@ -6,22 +6,62 @@
     <MudText Align="Align.Center">
         Here you can explore my professional background, including the companies I've worked with, roles I've held, and my educational journey.
     </MudText>
-</MudStack>
+</MudStack> 
 
-<MudTimeline>
-    @foreach (var entry in Options.Value.ExperienceList)
-    {
-        <MudTimelineItem Color="Color.Info" Size="Size.Small">
-            <ItemOpposite>
-                <MudText Color="Color.Info" Typo="Typo.h5">@entry.From - @entry.To</MudText>
-            </ItemOpposite>
-            <ItemContent>
-                <MudText Color="Color.Info" Typo="Typo.h6" GutterBottom="true">@entry.Name</MudText>
-                <MudText>@entry.Description</MudText>
-            </ItemContent>
-        </MudTimelineItem>
-    }
-</MudTimeline>
+@* Mobile View *@
+<MudHidden Breakpoint="Breakpoint.MdAndUp">
+    <MudTimeline TimelinePosition="TimelinePosition.Start">
+        @for (var i = 0; i < Options.Value.ExperienceList.Count; i++)
+        {
+            var entry = Options.Value.ExperienceList[i];
+            var color = i % 2 == 0 ? Color.Info : Color.Success;
+
+            <MudTimelineItem Color="@color" TimelineAlign="TimelineAlign.End">
+                <ItemDot>
+                    <MudAvatar Rounded="true" Size="Size.Medium" Variant="Variant.Text">
+                        <MudImage Src="@entry.Logo" />
+                    </MudAvatar>
+                </ItemDot>
+                <ItemContent>
+                    <MudLink Href="@entry.Link" Target="_blank">
+                        <MudText Color="@color" Typo="Typo.h6" GutterBottom="true">@entry.Name</MudText>
+                    </MudLink>
+                    <MudText Color="@color" Typo="Typo.body2">@entry.From ➔ @entry.To</MudText>
+                    <MudText>@entry.Description</MudText>
+                </ItemContent>
+            </MudTimelineItem>
+        }
+    </MudTimeline>
+</MudHidden>
+
+@* Desktop View *@
+<MudHidden Breakpoint="Breakpoint.SmAndDown">
+    <MudTimeline>
+        @for (var i = 0; i < Options.Value.ExperienceList.Count; i++)
+        {
+            var entry = Options.Value.ExperienceList[i];
+            var alignment = i % 2 == 0 ? Align.Left : Align.Right;
+            var color = i % 2 == 0 ? Color.Info : Color.Success;
+
+            <MudTimelineItem Color="@color">
+                <ItemDot>
+                    <MudAvatar Rounded="true" Size="Size.Medium" Variant="Variant.Text">
+                        <MudImage Src="@entry.Logo" />
+                    </MudAvatar>
+                </ItemDot>
+                <ItemOpposite>
+                    <MudText Color="@color" Typo="Typo.h5">@entry.From ➔ @entry.To</MudText>
+                </ItemOpposite>
+                <ItemContent>
+                    <MudLink Href="@entry.Link" Target="_blank">
+                        <MudText Align="@alignment" Color="@color" Typo="Typo.h6" GutterBottom="true">@entry.Name</MudText>
+                    </MudLink>
+                    <MudText Align="@alignment">@entry.Description</MudText>
+                </ItemContent>
+            </MudTimelineItem>
+        }
+    </MudTimeline>
+</MudHidden>
 
 @code {
     [Inject] public required IOptions<ExperienceOptions> Options { get; set; }

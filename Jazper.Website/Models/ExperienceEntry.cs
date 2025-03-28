@@ -6,6 +6,10 @@ public class ExperienceEntry
     
     public required string Description { get; set; }
     
+    public required string Link { get; set; }
+    
+    public required string Logo { get; set; }
+    
     public required string From { get; set; }
     
     public required string To { get; set; }
