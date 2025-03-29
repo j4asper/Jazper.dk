@@ -41,7 +41,7 @@
             <MudStack Row="true">
                 @foreach (var entry in category.Entries)
                 {
-                    <MudTooltip Text="@entry.Name" ShowOnClick="true">
+                    <MudTooltip Text="@entry.Name">
                         <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(entry.IconName)" Color="Color.Primary"/>
                     </MudTooltip>
                 }
