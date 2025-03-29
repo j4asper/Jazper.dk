@@ -2,12 +2,12 @@
     @switch (Entry.EmploymentStatus)
     {
         case EmploymentStatus.FullTime:
-            <MudTooltip Text="Full-Time">
+            <MudTooltip Text="Full-Time" ShowOnClick="true">
                 <MudIcon Color="@Color" Size="Size.Small" Icon="@Icons.Material.Filled.HourglassFull"/>
             </MudTooltip>
             break;
         case EmploymentStatus.PartTime:
-            <MudTooltip Text="Part-Time">
+            <MudTooltip Text="Part-Time" ShowOnClick="true">
                 <MudIcon Color="@Color" Size="Size.Small" Icon="@Icons.Material.Filled.HourglassBottom"/>
             </MudTooltip>
             break;
@@ -16,17 +16,17 @@
     @switch (Entry.WorkLocation)
     {
         case WorkLocation.Office:
-            <MudTooltip Text="At the office">
+            <MudTooltip Text="At the office" ShowOnClick="true">
                 <MudIcon Color="@Color" Size="Size.Small" Icon="@Icons.Material.Filled.Apartment"/>
             </MudTooltip>
             break;
         case WorkLocation.Home:
-            <MudTooltip Text="Remote">
+            <MudTooltip Text="Remote" ShowOnClick="true">
                 <MudIcon Color="@Color" Icon="@Icons.Material.Filled.Home"/>
             </MudTooltip>
             break;
         case WorkLocation.Hybrid:
-            <MudTooltip Text="Hybrid">
+            <MudTooltip Text="Hybrid" ShowOnClick="true">
                 <MudIcon Color="@Color" Icon="@Icons.Material.Filled.HomeWork"/>
             </MudTooltip>
             break;

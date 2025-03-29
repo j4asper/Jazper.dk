@@ -4,32 +4,32 @@
     <MudImage Src="images/jazper.png" Width="200"/>
     
     <MudStack Row="true">
-    <MudTooltip Text="GitHub Profile">
-        <MudIconButton
-            Color="Color.Success"
-            Size="Size.Large"
-            Icon="@Icons.Custom.Brands.GitHub"
-            Target="_blank"
-            Href="https://github.com/j4asper"/>
-    </MudTooltip>
+        <MudTooltip Text="GitHub Profile">
+            <MudIconButton
+                Color="Color.Success"
+                Size="Size.Large"
+                Icon="@Icons.Custom.Brands.GitHub"
+                Target="_blank"
+                Href="https://github.com/j4asper"/>
+        </MudTooltip>
 
-    <MudTooltip Text="LinkedIn">
-        <MudIconButton
-            Color="Color.Success"
-            Size="Size.Large"
-            Icon="@Icons.Custom.Brands.LinkedIn"
-            Target="_blank"
-            Href="https://www.linkedin.com/in/jasper-onsberg-christiansen"/>
-    </MudTooltip>
+        <MudTooltip Text="LinkedIn">
+            <MudIconButton
+                Color="Color.Success"
+                Size="Size.Large"
+                Icon="@Icons.Custom.Brands.LinkedIn"
+                Target="_blank"
+                Href="https://www.linkedin.com/in/jasper-onsberg-christiansen"/>
+        </MudTooltip>
 
-    <MudTooltip Text="Email">
-        <MudIconButton
-            Color="Color.Success"
-            Size="Size.Large"
-            Icon="@Icons.Material.Filled.Email"
-            Target="_blank"
-            Href="mailto:jasper@jazper.dk"/>
-    </MudTooltip>
+        <MudTooltip Text="Email">
+            <MudIconButton
+                Color="Color.Success"
+                Size="Size.Large"
+                Icon="@Icons.Material.Filled.Email"
+                Target="_blank"
+                Href="mailto:jasper@jazper.dk"/>
+        </MudTooltip>
     </MudStack>
     
     <MudDivider/>
@@ -41,7 +41,7 @@
             <MudStack Row="true">
                 @foreach (var entry in category.Entries)
                 {
-                    <MudTooltip Text="@entry.Name">
+                    <MudTooltip Text="@entry.Name" ShowOnClick="true">
                         <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(entry.IconName)" Color="Color.Primary"/>
                     </MudTooltip>
                 }
