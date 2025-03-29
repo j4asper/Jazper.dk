@@ -11,11 +11,13 @@
         <CardHeaderActions>
             @if (!string.IsNullOrEmpty(Project.RepositoryUrl))
             {
-                <MudIconButton
-                    Icon="@Icons.Custom.Brands.GitHub"
-                    Href="@Project.RepositoryUrl"
-                    Target="_blank"
-                    Color="Color.Success"/>
+                <MudTooltip Text="View source code">
+                    <MudIconButton
+                        Icon="@Icons.Custom.Brands.GitHub"
+                        Href="@Project.RepositoryUrl"
+                        Target="_blank"
+                        Color="Color.Success"/>
+                </MudTooltip>
             }
         </CardHeaderActions>
     </MudCardHeader>
