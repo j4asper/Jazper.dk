@@ -1,0 +1,40 @@
+<MudStack Justify="@Justify" Row="true" Spacing="6">
+    @switch (Entry.EmploymentStatus)
+    {
+        case EmploymentStatus.FullTime:
+            <MudTooltip Text="Full-Time">
+                <MudIcon Color="@Color" Size="Size.Small" Icon="@Icons.Material.Filled.HourglassFull"/>
+            </MudTooltip>
+            break;
+        case EmploymentStatus.PartTime:
+            <MudTooltip Text="Part-Time">
+                <MudIcon Color="@Color" Size="Size.Small" Icon="@Icons.Material.Filled.HourglassBottom"/>
+            </MudTooltip>
+            break;
+    }
+
+    @switch (Entry.WorkLocation)
+    {
+        case WorkLocation.Office:
+            <MudTooltip Text="At the office">
+                <MudIcon Color="@Color" Size="Size.Small" Icon="@Icons.Material.Filled.Apartment"/>
+            </MudTooltip>
+            break;
+        case WorkLocation.Home:
+            <MudTooltip Text="Remote">
+                <MudIcon Color="@Color" Icon="@Icons.Material.Filled.Home"/>
+            </MudTooltip>
+            break;
+        case WorkLocation.Hybrid:
+            <MudTooltip Text="Hybrid">
+                <MudIcon Color="@Color" Icon="@Icons.Material.Filled.HomeWork"/>
+            </MudTooltip>
+            break;
+    }
+</MudStack>
+
+@code {
+    [Parameter] [EditorRequired] public required ExperienceEntry Entry { get; set; }
+    [Parameter] public required Justify? Justify { get; set; }
+    [Parameter] public required Color Color { get; set; } = Color.Inherit;
+}

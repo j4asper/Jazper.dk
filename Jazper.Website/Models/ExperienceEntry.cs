@@ -13,4 +13,8 @@ public class ExperienceEntry
     public required string From { get; set; }
     
     public required string To { get; set; }
+    
+    public required EmploymentStatus EmploymentStatus { get; set; }
+    
+    public required WorkLocation WorkLocation { get; set; }
 }

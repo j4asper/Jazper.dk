@@ -27,6 +27,7 @@
                         <MudText Color="@color" Typo="Typo.h6" GutterBottom="true">@entry.Name</MudText>
                     </MudLink>
                     <MudText Color="@color" Typo="Typo.body2">@entry.From ➔ @entry.To</MudText>
+                    <ExperienceBadges Entry="@entry" Color="@color"/>
                     <MudText>@entry.Description</MudText>
                 </ItemContent>
             </MudTimelineItem>
@@ -41,6 +42,7 @@
         {
             var entry = Options.Value.ExperienceList[i];
             var alignment = i % 2 == 0 ? Align.Left : Align.Right;
+            var justify = i % 2 == 0 ? Justify.FlexStart : Justify.FlexEnd;
             var color = i % 2 == 0 ? Color.Info : Color.Success;
 
             <MudTimelineItem Color="@color">
@@ -56,6 +58,7 @@
                     <MudLink Href="@entry.Link" Target="_blank">
                         <MudText Align="@alignment" Color="@color" Typo="Typo.h6" GutterBottom="true">@entry.Name</MudText>
                     </MudLink>
+                    <ExperienceBadges Entry="@entry" Color="@color" Justify="@justify"/>
                     <MudText Align="@alignment">@entry.Description</MudText>
                 </ItemContent>
             </MudTimelineItem>
