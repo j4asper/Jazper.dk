@@ -4,108 +4,55 @@
     <MudImage Src="images/jazper.png" Width="200"/>
     
     <MudStack Row="true">
-        <MudIconButton 
-            Color="Color.Success" 
-            Size="Size.Large" 
-            Icon="@Icons.Custom.Brands.GitHub" 
+    <MudTooltip Text="GitHub Profile">
+        <MudIconButton
+            Color="Color.Success"
+            Size="Size.Large"
+            Icon="@Icons.Custom.Brands.GitHub"
             Target="_blank"
             Href="https://github.com/j4asper"/>
-        
-        <MudIconButton 
-            Color="Color.Success" 
-            Size="Size.Large" 
+    </MudTooltip>
+
+    <MudTooltip Text="LinkedIn">
+        <MudIconButton
+            Color="Color.Success"
+            Size="Size.Large"
             Icon="@Icons.Custom.Brands.LinkedIn"
             Target="_blank"
             Href="https://www.linkedin.com/in/jasper-onsberg-christiansen"/>
-        
-        <MudIconButton 
-            Color="Color.Success" 
-            Size="Size.Large" 
+    </MudTooltip>
+
+    <MudTooltip Text="Email">
+        <MudIconButton
+            Color="Color.Success"
+            Size="Size.Large"
             Icon="@Icons.Material.Filled.Email"
             Target="_blank"
             Href="mailto:jasper@jazper.dk"/>
+    </MudTooltip>
     </MudStack>
     
     <MudDivider/>
     
-    <MudStack AlignItems="AlignItems.Center" Class="mb-4">
-        <MudText Typo="Typo.h5" Class="gradient-text">Programming Languages</MudText>
-        <MudStack Row="true">
-            @foreach (var icon in _programmingLanguages)
-            {
-                <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(icon)" Color="Color.Primary"/>
-            }
+    @foreach (var category in TechStackOptions.Value.Categories)
+    {
+        <MudStack AlignItems="AlignItems.Center" Class="mb-4">
+            <MudText Typo="Typo.h5" Class="gradient-text">@category.Title</MudText>
+            <MudStack Row="true">
+                @foreach (var entry in category.Entries)
+                {
+                    <MudTooltip Text="@entry.Name">
+                        <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(entry.IconName)" Color="Color.Primary"/>
+                    </MudTooltip>
+                }
+            </MudStack>
         </MudStack>
-    </MudStack>
-
-    <MudStack AlignItems="AlignItems.Center" Class="mb-4">
-        <MudText Typo="Typo.h5" Class="gradient-text">Databases</MudText>
-        <MudStack Row="true">
-            @foreach (var icon in _databases)
-            {
-                <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(icon)" Color="Color.Primary"/>
-            }
-        </MudStack> 
-    </MudStack>
-
-    <MudStack AlignItems="AlignItems.Center" Class="mb-4">
-        <MudText Typo="Typo.h5" Class="gradient-text">DevOps</MudText>
-        <MudStack Row="true">
-            @foreach (var icon in _devops)
-            {
-                <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(icon)" Color="Color.Primary"/>
-            }
-        </MudStack>
-    </MudStack>
-
-    <MudStack AlignItems="AlignItems.Center" Class="mb-4">
-        <MudText Typo="Typo.h5" Class="gradient-text">Technologies and Tools</MudText>
-        <MudStack Row="true">
-            @foreach (var icon in _technologies)
-            {
-                <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(icon)" Color="Color.Primary"/>
-            }
-        </MudStack>
-    </MudStack>
+    }
     
 </MudStack>
 
 
 @code {
     [Inject] public required IconProvider IconProvider { get; set; }
-
-    private readonly string[] _programmingLanguages =
-    [
-        "python",
-        "csharp",
-        "javascript"
-    ];
-    
-    private readonly string[] _databases =
-    [
-        "mongodb",
-        "microsoftsqlserver",
-        "redis",
-        "mysql",
-        "postgresql",
-        "sqlite"
-    ];
-    
-    private readonly string[] _devops =
-    [
-        "git",
-        "github",
-        "githubactions",
-        "azuredevops",
-        "azurepipelines",
-        "gitlab"
-    ];
-    
-    private readonly string[] _technologies =
-    [
-        "docker",
-        "linux",
-        "kubernetes",
-        "rider"
-    ];
+    [Inject] public required IOptions<TechStackOptions> TechStackOptions { get; set; }
 }

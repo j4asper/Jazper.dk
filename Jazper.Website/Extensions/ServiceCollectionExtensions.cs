@@ -25,6 +25,10 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddOptionsWithValidateOnStart<ExperienceOptions>()
             .BindConfiguration(ExperienceOptions.Experience)
             .ValidateDataAnnotations();
+        
+        serviceCollection.AddOptionsWithValidateOnStart<TechStackOptions>()
+            .BindConfiguration(TechStackOptions.Stack)
+            .ValidateDataAnnotations();
 
         serviceCollection.AddHealthChecks();
 
