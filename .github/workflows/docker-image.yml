@@ -10,10 +10,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/jazper-website:latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
+
+    - name: Login to GitHub Container Registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
     - name: Build Docker image
-      run: |
-          echo ${{ secrets.REGISTRY_PASSWORD }} | docker login registry.jazper.dk --username ${{ secrets.REGISTRY_USERNAME }} --password-stdin
-          docker build --tag registry.jazper.dk/jazperdk:latest .
-          docker push registry.jazper.dk/jazperdk:latest
+      run: docker build -t $IMAGE_NAME .
+
+    - name: Push Docker image
+      run: docker push $IMAGE_NAME
