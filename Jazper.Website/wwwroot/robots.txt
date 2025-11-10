@@ -1,7 +1,7 @@
 Disallow: /_framework/*
 Disallow: /_content/*
 Disallow: /_blazor/*
-Disallow: /videoes/*
+Disallow: /videos/*
 Disallow: /images/*
 Disallow: /icons/*
 Disallow: /css/*
