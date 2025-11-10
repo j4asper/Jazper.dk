@@ -4,17 +4,12 @@ namespace Jazper.Website.Extensions;
 
 public static class HostBuilderExtensions
 {
-    public static IHostBuilder UseSerilog(this IHostBuilder hostBuilder)
+    public static IHostBuilder UseDefaultServiceProvider(this IHostBuilder hostBuilder)
     {
-        hostBuilder.ConfigureLogging((hostContext, logging) =>
+        hostBuilder.UseDefaultServiceProvider(options =>
         {
-            logging.ClearProviders();
-            
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(hostContext.Configuration)
-                .CreateLogger();
-            
-            logging.AddSerilog();
+            options.ValidateScopes = true;
+            options.ValidateOnBuild = true;
         });
         
         return hostBuilder;

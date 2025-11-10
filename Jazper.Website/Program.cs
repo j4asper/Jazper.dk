@@ -1,9 +1,12 @@
 using Jazper.Website.Components;
 using Jazper.Website.Extensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog();
+builder.Host
+    .UseDefaultServiceProvider()
+    .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddHostDependencies();
 
