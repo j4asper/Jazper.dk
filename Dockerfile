@@ -1,5 +1,5 @@
 # https://mcr.microsoft.com/en-us/artifact/mar/dotnet/sdk/tags
-FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build-env
 
 WORKDIR /Jazper.Website
 
