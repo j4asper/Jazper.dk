@@ -1,0 +1,28 @@
+<section id="security" class="jz-section jz-section--tight">
+    <div class="jz-security-grid">
+        <div>
+            <h2 class="jz-glow"><span class="jz-mark">//</span>security_&amp;_ctf</h2>
+            <p class="jz-security-intro">@Security.Value.Intro</p>
+            <div class="jz-security-highlight">
+                <div class="jz-security-highlight-badge">@Security.Value.HighlightBadge</div>
+                <p class="jz-security-highlight-body">@Security.Value.HighlightBody</p>
+            </div>
+        </div>
+        <div class="jz-security-links">
+            @foreach (var profile in Security.Value.Profiles)
+            {
+                <a href="@profile.Href" target="_blank" rel="noopener" class="jz-link jz-row jz-mono jz-security-link">
+                    <PhosphorIcon Name="@profile.Icon"/>@profile.Label
+                    @if (!string.IsNullOrEmpty(profile.SubLabel))
+                    {
+                        <span class="jz-security-link-sub">@profile.SubLabel</span>
+                    }
+                </a>
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    [Inject] public required IOptions<SecurityOptions> Security { get; set; }
+}

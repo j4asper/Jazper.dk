@@ -1,0 +1,29 @@
+<section id="stack" class="jz-section">
+    <h2 class="jz-glow"><span class="jz-mark">//</span>stack</h2>
+    <p class="text-muted jz-section-intro">What I reach for, grouped by what it's for.</p>
+    <div class="jz-stack-grid">
+        @foreach (var category in Stack.Value.Categories)
+        {
+            <div>
+                <h6 class="jz-stack-title">@category.Title</h6>
+                <div class="jz-tag-row">
+                    @foreach (var entry in category.Entries)
+                    {
+                        <Tag Variant="TagVariant.Neutral">
+                            <span class="jz-stack-pill">
+                                @((MarkupString)IconProvider.GetIcon(entry.IconName))
+                                @entry.Name
+                            </span>
+                        </Tag>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <hr class="hr" style="margin-top: 40px;"/>
+</section>
+
+@code {
+    [Inject] public required IOptions<TechStackOptions> Stack { get; set; }
+    [Inject] public required IconProvider IconProvider { get; set; }
+}

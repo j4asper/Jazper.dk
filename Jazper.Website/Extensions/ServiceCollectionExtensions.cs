@@ -1,7 +1,6 @@
 using Jazper.Website.Options;
 using Jazper.Website.Providers;
 using Microsoft.AspNetCore.HttpOverrides;
-using MudBlazor.Services;
 
 namespace Jazper.Website.Extensions;
 
@@ -13,8 +12,7 @@ public static class ServiceCollectionExtensions
         {
             options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
         });
-        
-        serviceCollection.AddMudServices();
+
         serviceCollection.AddRazorComponents()
             .AddInteractiveServerComponents();
 
@@ -22,18 +20,34 @@ public static class ServiceCollectionExtensions
             .BindConfiguration(ProjectsOptions.Projects)
             .ValidateDataAnnotations();
 
-        serviceCollection.AddOptionsWithValidateOnStart<ExperienceOptions>()
-            .BindConfiguration(ExperienceOptions.Experience)
-            .ValidateDataAnnotations();
-        
         serviceCollection.AddOptionsWithValidateOnStart<TechStackOptions>()
             .BindConfiguration(TechStackOptions.Stack)
+            .ValidateDataAnnotations();
+
+        serviceCollection.AddOptionsWithValidateOnStart<HeroOptions>()
+            .BindConfiguration(HeroOptions.Hero)
+            .ValidateDataAnnotations();
+
+        serviceCollection.AddOptionsWithValidateOnStart<FlagshipOptions>()
+            .BindConfiguration(FlagshipOptions.Flagship)
+            .ValidateDataAnnotations();
+
+        serviceCollection.AddOptionsWithValidateOnStart<SecurityOptions>()
+            .BindConfiguration(SecurityOptions.Security)
+            .ValidateDataAnnotations();
+
+        serviceCollection.AddOptionsWithValidateOnStart<CertificationsOptions>()
+            .BindConfiguration(CertificationsOptions.Certifications)
+            .ValidateDataAnnotations();
+
+        serviceCollection.AddOptionsWithValidateOnStart<ThemeOptions>()
+            .BindConfiguration(ThemeOptions.Theme)
             .ValidateDataAnnotations();
 
         serviceCollection.AddHealthChecks();
 
         serviceCollection.AddSingleton<IconProvider>();
-        
+
         return serviceCollection;
     }
 }

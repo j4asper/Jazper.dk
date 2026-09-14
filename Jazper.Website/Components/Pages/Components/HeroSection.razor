@@ -1,0 +1,28 @@
+<section id="top" class="jz-hero">
+    <div class="jz-hero-copy">
+        <div class="jz-eyebrow">
+            <PhosphorIcon Name="map-pin"/>@Hero.Value.Location
+        </div>
+        <h1 class="jz-glow jz-heading">@Hero.Value.Heading</h1>
+        <p class="jz-lead">@Hero.Value.Subheading</p>
+        <div class="jz-hero-actions">
+            <a href="@Hero.Value.GithubUrl" target="_blank" rel="noopener" class="btn btn-secondary">
+                <PhosphorIcon Name="github-logo"/>@GithubHandle
+            </a>
+            <a href="@Hero.Value.LinkedInUrl" target="_blank" rel="noopener" class="btn btn-secondary">
+                <PhosphorIcon Name="linkedin-logo"/>LinkedIn
+            </a>
+        </div>
+        <TerminalCard Label="@Hero.Value.TerminalLabel" WhoAmI="@Hero.Value.TerminalWhoAmI"/>
+    </div>
+    <div class="jz-hero-portrait">
+        <div class="jz-hero-portrait-glow"></div>
+        <img src="@Hero.Value.PortraitSrc" alt="@Hero.Value.Name"/>
+    </div>
+</section>
+
+@code {
+    [Inject] public required IOptions<HeroOptions> Hero { get; set; }
+
+    private string GithubHandle => "github.com/" + new Uri(Hero.Value.GithubUrl).AbsolutePath.Trim('/');
+}

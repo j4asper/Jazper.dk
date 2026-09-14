@@ -1,0 +1,49 @@
+.jz-shell {
+  --color-accent-100: color-mix(in srgb, var(--color-accent) 14%, var(--color-neutral-100));
+  --color-accent-200: color-mix(in srgb, var(--color-accent) 32%, var(--color-neutral-100));
+  --color-accent-300: color-mix(in srgb, var(--color-accent) 60%, var(--color-neutral-100));
+  --color-accent-400: color-mix(in srgb, var(--color-accent) 80%, var(--color-neutral-200));
+  --color-accent-700: color-mix(in srgb, var(--color-accent) 42%, var(--color-bg));
+  --color-accent-800: color-mix(in srgb, var(--color-accent) 26%, var(--color-bg));
+  --color-accent-900: color-mix(in srgb, var(--color-accent) 14%, var(--color-bg));
+  --color-surface: color-mix(in srgb, var(--color-accent) 5%, #1b1e2b);
+  --color-section: color-mix(in srgb, var(--color-accent) 22%, var(--color-bg));
+  --color-section-glow: color-mix(in srgb, var(--color-accent) 34%, var(--color-bg));
+
+  position: relative;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* Background grid + scanlines, masked to a soft radial fade at the top. */
+.jz-shell::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    linear-gradient(to right, color-mix(in srgb, var(--color-accent) 7%, transparent) 1px, transparent 1px) 0 0 / 96px 96px,
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-accent) 7%, transparent) 1px, transparent 1px) 0 0 / 96px 96px,
+    repeating-linear-gradient(to bottom, color-mix(in srgb, var(--color-text) 4%, transparent) 0 1px, transparent 1px 3px);
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 20%, transparent 85%);
+}
+
+/* Mouse-follow glow orb (see home-effects.js). Sits at the same z-index as
+   the background grid, i.e. behind every content band. */
+.jz-orb {
+  position: fixed; left: 0; top: 0; z-index: 0; width: 640px; height: 640px;
+  border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity .6s ease;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 62%);
+  will-change: transform;
+}
+
+#blazor-error-ui {
+  display: none;
+  position: fixed; left: 16px; bottom: 16px; right: 16px; z-index: 1000;
+  padding: 14px 18px; border-radius: var(--radius-md);
+  background: var(--color-surface); color: var(--color-text);
+  box-shadow: var(--shadow-lg); font-size: 14px;
+}
+#blazor-error-ui.show { display: block; }
+#blazor-error-ui .reload { color: var(--color-accent); margin-left: 6px; }
+#blazor-error-ui .dismiss { position: absolute; top: 8px; right: 12px; cursor: pointer; }

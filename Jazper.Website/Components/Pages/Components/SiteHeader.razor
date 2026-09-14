@@ -1,0 +1,25 @@
+<header class="jz-header">
+    <div class="jz-header-inner">
+        <a href="#top" class="jz-link jz-brand">
+            <span class="jz-brand-dot"></span>
+            @Hero.Value.Name
+        </a>
+        <nav class="jz-nav jz-mono">
+            <a href="#work" class="jz-link">/work</a>
+            <a href="#stack" class="jz-link">/stack</a>
+            @if (Theme.Value.ShowSecuritySection)
+            {
+                <a href="#security" class="jz-link">/security</a>
+            }
+            <a href="#certs" class="jz-link">/certs</a>
+        </nav>
+        <a href="mailto:@Hero.Value.Email" class="btn btn-primary">
+            <PhosphorIcon Name="paper-plane-tilt"/>Email me
+        </a>
+    </div>
+</header>
+
+@code {
+    [Inject] public required IOptions<HeroOptions> Hero { get; set; }
+    [Inject] public required IOptions<ThemeOptions> Theme { get; set; }
+}

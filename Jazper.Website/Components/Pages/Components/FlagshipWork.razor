@@ -1,0 +1,35 @@
+<div class="card jz-flagship" data-reveal>
+    <div class="jz-flagship-copy">
+        <div class="jz-flagship-badge">
+            <span class="jz-flagship-badge-rule"></span>@Flagship.Badge
+        </div>
+        <h3 class="jz-glow jz-flagship-title">@Flagship.Name</h3>
+        <p class="jz-flagship-desc">@((MarkupString)Flagship.Description)</p>
+        <div class="jz-flagship-actions">
+            <a href="@Flagship.PrimaryLinkUrl" target="_blank" rel="noopener" class="btn btn-primary">
+                <PhosphorIcon Name="arrow-up-right"/>@Flagship.PrimaryLinkLabel
+            </a>
+        </div>
+        <div class="jz-tag-row">
+            @foreach (var tag in Flagship.Tags)
+            {
+                <Tag Variant="@(tag == Flagship.Tags[0] ? TagVariant.Accent : TagVariant.Neutral)">@tag</Tag>
+            }
+        </div>
+    </div>
+    <div class="jz-flagship-facts">
+        @foreach (var fact in Flagship.Facts)
+        {
+            <div class="jz-fact-row">
+                <span class="jz-fact-label jz-mono">@fact.Label</span>
+                <span class="jz-fact-value">@fact.Value</span>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Inject] public required IOptions<FlagshipOptions> FlagshipOptions { get; set; }
+
+    private FlagshipOptions Flagship => FlagshipOptions.Value;
+}

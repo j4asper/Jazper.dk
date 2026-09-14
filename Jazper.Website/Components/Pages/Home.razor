@@ -1,58 +1,81 @@
 ﻿@page "/"
+@implements IAsyncDisposable
 
-<MudStack Spacing="4" AlignItems="AlignItems.Center">
-    <MudImage Src="images/jazper.png" Width="200"/>
-    
-    <MudStack Row="true">
-        <MudTooltip Text="GitHub Profile">
-            <MudIconButton
-                Color="Color.Success"
-                Size="Size.Large"
-                Icon="@Icons.Custom.Brands.GitHub"
-                Target="_blank"
-                Href="https://github.com/j4asper"/>
-        </MudTooltip>
+<PageTitle>Jazper</PageTitle>
 
-        <MudTooltip Text="LinkedIn">
-            <MudIconButton
-                Color="Color.Success"
-                Size="Size.Large"
-                Icon="@Icons.Custom.Brands.LinkedIn"
-                Target="_blank"
-                Href="https://www.linkedin.com/in/jasper-onsberg-christiansen"/>
-        </MudTooltip>
+<HeroSection/>
 
-        <MudTooltip Text="Email">
-            <MudIconButton
-                Color="Color.Success"
-                Size="Size.Large"
-                Icon="@Icons.Material.Filled.Email"
-                Target="_blank"
-                Href="mailto:jasper@jazper.dk"/>
-        </MudTooltip>
-    </MudStack>
-    
-    <MudDivider/>
-    
-    @foreach (var category in TechStackOptions.Value.Categories)
-    {
-        <MudStack AlignItems="AlignItems.Center" Class="mb-4">
-            <MudText Typo="Typo.h5" Class="gradient-text">@category.Title</MudText>
-            <MudStack Row="true">
-                @foreach (var entry in category.Entries)
-                {
-                    <MudTooltip Text="@entry.Name">
-                        <MudIcon Size="Size.Large" Icon="@IconProvider.GetIcon(entry.IconName)" Color="Color.Primary"/>
-                    </MudTooltip>
-                }
-            </MudStack>
-        </MudStack>
-    }
-    
-</MudStack>
+<section id="work" class="jz-section">
+    <div class="jz-section-head">
+        <h2 class="jz-glow"><span class="jz-mark">//</span>selected_work</h2>
+        <a href="@GithubReposUrl" target="_blank" rel="noopener" class="jz-section-link">ls ~/repos &rarr; all</a>
+    </div>
 
+    <FlagshipWork/>
+
+    <div class="jz-work-grid">
+        @foreach (var project in GridProjects)
+        {
+            <WorkCard Project="project"/>
+        }
+    </div>
+</section>
+
+<StackSection/>
+
+@if (Theme.Value.ShowSecuritySection)
+{
+    <SecuritySection/>
+}
+
+<section id="certs" class="jz-section">
+    <div class="jz-section-head">
+        <h2 class="jz-glow"><span class="jz-mark">//</span>certifications</h2>
+        <a href="@Certifications.Value.CredlyProfileUrl" target="_blank" rel="noopener" class="jz-mono jz-section-link jz-section-link--sm">verify on credly &rarr;</a>
+    </div>
+    <p class="text-muted jz-section-intro">@Certifications.Value.Intro</p>
+
+    <div class="jz-certs-grid">
+        @foreach (var certification in Certifications.Value.CertificationList)
+        {
+            <CertificationCard Certification="certification"/>
+        }
+    </div>
+</section>
 
 @code {
-    [Inject] public required IconProvider IconProvider { get; set; }
-    [Inject] public required IOptions<TechStackOptions> TechStackOptions { get; set; }
+    [Inject] public required IOptions<ProjectsOptions> Projects { get; set; }
+    [Inject] public required IOptions<FlagshipOptions> Flagship { get; set; }
+    [Inject] public required IOptions<CertificationsOptions> Certifications { get; set; }
+    [Inject] public required IOptions<ThemeOptions> Theme { get; set; }
+    [Inject] public required IOptions<HeroOptions> Hero { get; set; }
+    [Inject] public required IJSRuntime JsRuntime { get; set; }
+
+    private string GithubReposUrl => Hero.Value.GithubUrl.TrimEnd('/') + "?tab=repositories";
+
+    private IEnumerable<Project> GridProjects =>
+        Projects.Value.ProjectList.Where(p =>
+            !p.Url.TrimEnd('/').Equals(Flagship.Value.PrimaryLinkUrl.TrimEnd('/'), StringComparison.OrdinalIgnoreCase));
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync("jzHomeEffects.init", Hero.Value.TypedWords);
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            await JsRuntime.InvokeVoidAsync("jzHomeEffects.dispose");
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+        catch (InvalidOperationException)
+        {
+        }
+    }
 }

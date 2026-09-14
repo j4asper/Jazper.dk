@@ -1,18 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <base href="/"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
-    <link href=@Assets["_content/MudBlazor/MudBlazor.min.css"] rel="stylesheet"/>
-    <link href=@Assets["css/gradient-text.css"] rel="stylesheet"/>
+    <link href=@Assets["lib/inter/inter.css"] rel="stylesheet"/>
+    <link href=@Assets["lib/phosphor/style.css"] rel="stylesheet"/>
+    <link href=@Assets["css/nocturne.css"] rel="stylesheet"/>
+    <link href=@Assets["css/site.css"] rel="stylesheet"/>
+    <link href=@Assets["Jazper.Website.styles.css"] rel="stylesheet"/>
     <ImportMap/>
     <link rel="icon" type="image/ico" href="favicon.ico"/>
     <title>Jazper</title>
     <meta name="description" content="@_description">
-    <meta name="theme-color" content="#0C8FFF">
+    <meta name="theme-color" content="#161826">
     <meta property="og:title" content="Jazper.dk" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jazper.dk" />
@@ -24,9 +26,9 @@
 
 <body>
     <Routes @rendermode="InteractiveServer"/>
-        
+
     <script src=@Assets["_framework/blazor.web.js"]></script>
-    <script src=@Assets["_content/MudBlazor/MudBlazor.min.js"]></script>
+    <script src=@Assets["js/home-effects.js"]></script>
     <script src=@Assets["js/cookie.js"]></script>
 </body>
 

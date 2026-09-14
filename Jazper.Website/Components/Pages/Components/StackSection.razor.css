@@ -1,0 +1,11 @@
+.jz-stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 32px 40px; }
+.jz-stack-title { margin: 0 0 12px; color: color-mix(in srgb, var(--color-text) 60%, transparent); }
+.jz-stack-pill { display: inline-flex; align-items: center; gap: 6px; }
+
+/* The icon markup comes from IconProvider as raw injected SVG (not compiled
+   Razor markup), so it never carries this component's scope attribute —
+   ::deep is required to reach it. */
+.jz-stack-pill ::deep img,
+.jz-stack-pill ::deep svg { width: 13px; height: 13px; display: block; }
+/* simple-icons ship with no fill, which defaults to black; inherit the pill's text color instead. */
+.jz-stack-pill ::deep svg { fill: currentColor; }
