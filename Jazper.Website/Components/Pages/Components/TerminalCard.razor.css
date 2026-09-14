@@ -1,0 +1,16 @@
+.jz-terminal { position: relative; margin-top: 30px; max-width: 480px; border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); overflow: hidden; }
+.jz-terminal-bar { display: flex; align-items: center; gap: 7px; padding: 9px 12px; border-bottom: 1px solid var(--color-neutral-800); }
+.jz-terminal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-neutral-700); }
+.jz-terminal-dot--accent { background: var(--color-accent-700); }
+.jz-terminal-label { margin-left: 6px; font-size: 11px; color: color-mix(in srgb, var(--color-text) 50%, transparent); }
+.jz-terminal-body { padding: 14px 14px 16px; font-size: 13px; line-height: 1.75; }
+.jz-terminal-prompt { color: var(--color-neutral-500); }
+.jz-terminal-typed { color: var(--color-accent-300); }
+
+@keyframes jzblink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+.jz-caret {
+  display: inline-block; width: 8px; height: 14px; margin-left: 3px;
+  vertical-align: -2px; background: var(--color-accent);
+  animation: jzblink 1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) { .jz-caret { animation: none; } }

@@ -1,0 +1,21 @@
+/* Already non-static (sticky) with z-index 10, so it's above the fixed
+   background grid (z-index 0) without needing the explicit lift the other,
+   otherwise-static content bands need. */
+.jz-header {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+.jz-header-inner {
+  max-width: 1100px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; gap: 28px;
+}
+.jz-brand {
+  font-family: var(--font-heading); font-weight: 500; font-size: 16px;
+  margin-right: auto; display: flex; align-items: center; gap: 9px;
+}
+.jz-brand-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+}
+.jz-nav { display: flex; gap: 22px; font-size: 13px; }

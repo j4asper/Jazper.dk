@@ -1,0 +1,6 @@
+.jz-card.jz-card-dashed { border-style: dashed; border-color: color-mix(in srgb, var(--color-accent) 40%, transparent); background: transparent; }
+
+.jz-cert-head { display: flex; align-items: flex-start; gap: 12px; }
+/* PhosphorIcon renders its own <i> as a child component, so reaching it needs ::deep. */
+.jz-cert-head ::deep i { font-size: 22px; color: var(--color-accent); margin-top: 2px; }
+.jz-cert-head-text { min-width: 0; }
