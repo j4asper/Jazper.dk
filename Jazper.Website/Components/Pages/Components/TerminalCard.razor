@@ -1,0 +1,19 @@
+<div class="jz-terminal jz-mono">
+    <div class="jz-terminal-bar">
+        <span class="jz-terminal-dot"></span>
+        <span class="jz-terminal-dot"></span>
+        <span class="jz-terminal-dot jz-terminal-dot--accent"></span>
+        <span class="jz-terminal-label">@Label</span>
+    </div>
+    <div class="jz-terminal-body">
+        <div class="jz-terminal-prompt">$ whoami</div>
+        <div>@WhoAmI</div>
+        <div class="jz-terminal-prompt" style="margin-top: 6px;">$ stack --now</div>
+        <div><span id="jz-typed-text" class="jz-terminal-typed"></span><span class="jz-caret"></span></div>
+    </div>
+</div>
+
+@code {
+    [Parameter] [EditorRequired] public required string Label { get; set; }
+    [Parameter] [EditorRequired] public required string WhoAmI { get; set; }
+}

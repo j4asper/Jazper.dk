@@ -1,0 +1,11 @@
+<footer class="jz-footer">
+    <span class="jz-footer-copyright">&copy; @DateTime.UtcNow.Year @Hero.Value.FooterName &middot; @Hero.Value.FooterLocation</span>
+    <span class="jz-footer-links">
+        <a href="mailto:@Hero.Value.Email">@Hero.Value.Email</a>
+        <a href="@Hero.Value.LinkedInUrl" target="_blank" rel="noopener">LinkedIn</a>
+    </span>
+</footer>
+
+@code {
+    [Inject] public required IOptions<HeroOptions> Hero { get; set; }
+}

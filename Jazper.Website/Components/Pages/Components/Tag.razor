@@ -1,0 +1,13 @@
+<span class="tag @VariantClass jz-tag">@ChildContent</span>
+
+@code {
+    [Parameter] public TagVariant Variant { get; set; } = TagVariant.Neutral;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string VariantClass => Variant switch
+    {
+        TagVariant.Accent => "tag-accent",
+        TagVariant.Outline => "tag-outline",
+        _ => "tag-neutral"
+    };
+}

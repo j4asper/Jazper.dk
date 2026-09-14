@@ -1,0 +1,27 @@
+<a href="@Project.Url" target="_blank" rel="noopener" class="card elev-sm jz-card jz-work-card" data-reveal>
+    @if (!string.IsNullOrEmpty(Project.Kicker))
+    {
+        <div class="card-kicker jz-mono">@Project.Kicker</div>
+    }
+    <div class="card-title">@Project.Name</div>
+    <p class="card-body">@Project.Description</p>
+    @if (!string.IsNullOrEmpty(Project.MetaPrimary))
+    {
+        <div class="card-meta jz-mono">
+            @if (!string.IsNullOrEmpty(Project.MetaIcon))
+            {
+                <PhosphorIcon Name="@Project.MetaIcon"/>
+            }
+            @Project.MetaPrimary
+            @if (!string.IsNullOrEmpty(Project.MetaSecondary))
+            {
+                <span class="jz-meta-sep">&middot;</span>
+                @Project.MetaSecondary
+            }
+        </div>
+    }
+</a>
+
+@code {
+    [Parameter] [EditorRequired] public required Project Project { get; set; }
+}

@@ -1,0 +1,41 @@
+@if (IsLink)
+{
+    <a href="@Certification.Href" target="_blank" rel="noopener" class="card elev-sm jz-card jz-work-card" data-reveal>
+        @CardBody
+    </a>
+}
+else
+{
+    <div class="card elev-sm jz-card jz-card-dashed" data-reveal>
+        @CardBody
+    </div>
+}
+
+@code {
+    [Parameter] [EditorRequired] public required Certification Certification { get; set; }
+
+    private bool IsLink => Certification.Status == CertificationStatus.Earned && !string.IsNullOrEmpty(Certification.Href);
+
+    private RenderFragment CardBody => @<text>
+        <div class="jz-cert-head">
+            <PhosphorIcon Name="@Certification.Icon"/>
+            <div class="jz-cert-head-text">
+                <div class="card-kicker jz-mono">@Certification.Kicker</div>
+                <div class="card-title">@Certification.Title</div>
+            </div>
+        </div>
+        <p class="card-body">@Certification.Description</p>
+        <div class="card-meta jz-mono">
+            @if (Certification.Status == CertificationStatus.Earned)
+            {
+                <Tag Variant="TagVariant.Accent">earned</Tag>
+                <span class="jz-meta-sep">&middot;</span>
+                <text>credly verified</text>
+            }
+            else
+            {
+                <Tag Variant="TagVariant.Outline">in progress</Tag>
+            }
+        </div>
+    </text>;
+}
