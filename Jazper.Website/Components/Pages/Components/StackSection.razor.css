@@ -1,4 +1,4 @@
-.jz-stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 32px 40px; }
+.jz-stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 32px 40px; }
 .jz-stack-title { margin: 0 0 12px; color: color-mix(in srgb, var(--color-text) 60%, transparent); }
 .jz-stack-pill { display: inline-flex; align-items: center; gap: 6px; }
 

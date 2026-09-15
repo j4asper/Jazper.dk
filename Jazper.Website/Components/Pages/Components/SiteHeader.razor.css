@@ -13,9 +13,47 @@
 .jz-brand {
   font-family: var(--font-heading); font-weight: 500; font-size: 16px;
   margin-right: auto; display: flex; align-items: center; gap: 9px;
+  min-width: 0;
 }
 .jz-brand-dot {
+  flex: none;
   width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent);
   box-shadow: 0 0 10px var(--color-accent);
 }
+.jz-brand-name {
+  min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
 .jz-nav { display: flex; gap: 22px; font-size: 13px; }
+
+.jz-header-toggle {
+  display: none;
+  align-items: center; justify-content: center; flex: none;
+  width: 36px; height: 36px;
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+  background: transparent; color: var(--color-text); cursor: pointer;
+}
+.jz-header-toggle:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+@media (max-width: 640px) {
+  .jz-header-inner { flex-wrap: wrap; padding: 12px 20px; gap: 12px; }
+  .jz-brand { order: 1; }
+  .jz-header-toggle { display: flex; order: 2; }
+  .jz-header-email { order: 3; padding: 8px 10px; }
+
+  .jz-nav {
+    order: 4; flex-basis: 100%;
+    flex-direction: column; gap: 0;
+    max-height: 0; overflow: hidden;
+    transition: max-height .25s ease;
+  }
+  .jz-nav.jz-nav--open { max-height: 260px; }
+  .jz-nav .jz-link {
+    display: block; padding: 12px 4px;
+    border-top: 1px solid var(--color-neutral-800);
+  }
+}
+
+@media (max-width: 380px) {
+  .jz-header-email-label { display: none; }
+  .jz-header-email { width: 36px; padding: 0; }
+}

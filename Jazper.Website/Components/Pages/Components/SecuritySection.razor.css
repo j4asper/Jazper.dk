@@ -1,7 +1,7 @@
 .jz-row { transition: background .18s ease; }
 .jz-row:hover { background: color-mix(in srgb, var(--color-text) 5%, transparent); }
 
-.jz-security-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; align-items: start; }
+.jz-security-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 40px; align-items: start; }
 .jz-security-intro { font-size: 15px; max-width: 46ch; color: color-mix(in srgb, var(--color-text) 78%, transparent); }
 .jz-security-highlight { margin-top: 20px; padding: 18px 20px; border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-neutral-800); max-width: 46ch; }
 .jz-security-highlight-badge { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 8px; }

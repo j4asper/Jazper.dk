@@ -2,19 +2,25 @@
     <div class="jz-header-inner">
         <a href="#top" class="jz-link jz-brand">
             <span class="jz-brand-dot"></span>
-            @Hero.Value.Name
+            <span class="jz-brand-name">@Hero.Value.Name</span>
         </a>
-        <nav class="jz-nav jz-mono">
-            <a href="#work" class="jz-link">/work</a>
-            <a href="#stack" class="jz-link">/stack</a>
+
+        <button type="button" class="jz-header-toggle" aria-label="Toggle navigation" aria-expanded="@(_menuOpen ? "true" : "false")" @onclick="ToggleMenu">
+            <PhosphorIcon Name="@(_menuOpen ? "x" : "list")"/>
+        </button>
+
+        <nav class="jz-nav jz-mono @(_menuOpen ? "jz-nav--open" : "")">
+            <a href="#work" class="jz-link" @onclick="CloseMenu">/work</a>
+            <a href="#stack" class="jz-link" @onclick="CloseMenu">/stack</a>
             @if (Theme.Value.ShowSecuritySection)
             {
-                <a href="#security" class="jz-link">/security</a>
+                <a href="#security" class="jz-link" @onclick="CloseMenu">/security</a>
             }
-            <a href="#certs" class="jz-link">/certs</a>
+            <a href="#certs" class="jz-link" @onclick="CloseMenu">/certs</a>
         </nav>
-        <a href="mailto:@Hero.Value.Email" class="btn btn-primary">
-            <PhosphorIcon Name="paper-plane-tilt"/>Email me
+
+        <a href="mailto:@Hero.Value.Email" class="btn btn-primary jz-header-email">
+            <PhosphorIcon Name="paper-plane-tilt"/><span class="jz-header-email-label">Email me</span>
         </a>
     </div>
 </header>
@@ -22,4 +28,9 @@
 @code {
     [Inject] public required IOptions<HeroOptions> Hero { get; set; }
     [Inject] public required IOptions<ThemeOptions> Theme { get; set; }
+
+    private bool _menuOpen;
+
+    private void ToggleMenu() => _menuOpen = !_menuOpen;
+    private void CloseMenu() => _menuOpen = false;
 }
